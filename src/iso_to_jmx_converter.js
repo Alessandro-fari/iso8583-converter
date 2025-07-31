@@ -3,6 +3,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 const {
     printExtractedFields,
     printSuccess,
@@ -136,9 +137,16 @@ function main() {
     // console.log('Stringa XML generata:');
     // console.log(jmeterXMLString);
 
-    // Definisci i percorsi dei file
-    const templatePath = './template/template.jmx'; // Il tuo file template
-    const outputPath = `./output/output_${timestamp}.jmx`;
+    // Definisci i percorsi dei file in modo dinamico
+    const homeDir = os.homedir();
+    const outputDir = path.join(homeDir, '.iso8583-converter', 'output');
+    const templatePath = path.join(__dirname, '..', 'template', 'template.jmx'); // Riferimento relativo allo script
+    const outputPath = path.join(outputDir, `output_${timestamp}.jmx`);
+
+    // Crea la directory di output se non esiste
+    if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir, { recursive: true });
+    }
     
     // Controlla se il file template esiste
     if (!fs.existsSync(templatePath)) {
