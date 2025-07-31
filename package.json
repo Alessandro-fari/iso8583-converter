@@ -1,0 +1,24 @@
+{
+  "name": "conviso",
+  "version": "1.0.0",
+  "description": "Converte log ISO8583 in formato JMeter JMX",
+  "main": "iso-to-jmx-converter.js",
+  "scripts": {
+    "start": "node iso-to-jmx-converter.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "bin": {
+    "iso8584-converter": "./iso-to-jmx-converter.js"
+  },
+  "keywords": [
+    "iso8583",
+    "jmeter",
+    "converter",
+    "testing"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

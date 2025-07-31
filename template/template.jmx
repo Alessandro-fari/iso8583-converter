@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="VISAPAN01" elementType="Argument">
+            <stringProp name="Argument.name">VISAPAN01</stringProp>
+            <stringProp name="Argument.value">4012001037141112</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="MASTERPAN01" elementType="Argument">
+            <stringProp name="Argument.name">MASTERPAN01</stringProp>
+            <stringProp name="Argument.value">5223450000000007</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="MASTERPAN03" elementType="Argument">
+            <stringProp name="Argument.name">MASTERPAN03</stringProp>
+            <stringProp name="Argument.value">5255999999999992</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="AMEXPAN01" elementType="Argument">
+            <stringProp name="Argument.name">AMEXPAN01</stringProp>
+            <stringProp name="Argument.value">3435000000000000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="JCBPAN01" elementType="Argument">
+            <stringProp name="Argument.name">JCBPAN01</stringProp>
+            <stringProp name="Argument.value">3528000000000000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="DINERSPAN01" elementType="Argument">
+            <stringProp name="Argument.name">DINERSPAN01</stringProp>
+            <stringProp name="Argument.value">3600000000000000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="UPIPAN01" elementType="Argument">
+            <stringProp name="Argument.name">UPIPAN01</stringProp>
+            <stringProp name="Argument.value">6223330000000000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="P12" elementType="Argument">
+            <stringProp name="Argument.name">P12</stringProp>
+            <stringProp name="Argument.value">${__time(YYMMdd)}${__time(hhmmss)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="MCPAN01_RAX" elementType="Argument">
+            <stringProp name="Argument.name">MCPAN01_RAX</stringProp>
+            <stringProp name="Argument.value">5204730000001011</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="VSPAN01_RAX" elementType="Argument">
+            <stringProp name="Argument.name">VSPAN01_RAX</stringProp>
+            <stringProp name="Argument.value">4012001037141112</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="MCPANWBC" elementType="Argument">
+            <stringProp name="Argument.name">MCPANWBC</stringProp>
+            <stringProp name="Argument.value">5299910010000015</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="MCFRICTIONLESS3DS2" elementType="Argument">
+            <stringProp name="Argument.name">MCFRICTIONLESS3DS2</stringProp>
+            <stringProp name="Argument.value">5455330200000016</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="MCFULLAUTH" elementType="Argument">
+            <stringProp name="Argument.name">MCFULLAUTH</stringProp>
+            <stringProp name="Argument.value">5223450000000007</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="VSFULLAUTH" elementType="Argument">
+            <stringProp name="Argument.name">VSFULLAUTH</stringProp>
+            <stringProp name="Argument.value">4176661000001015</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="VSATT" elementType="Argument">
+            <stringProp name="Argument.name">VSATT</stringProp>
+            <stringProp name="Argument.value">4176661000001023</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="VSNOENR" elementType="Argument">
+            <stringProp name="Argument.name">VSNOENR</stringProp>
+            <stringProp name="Argument.value">4176661000001031</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="MCATT" elementType="Argument">
+            <stringProp name="Argument.name">MCATT</stringProp>
+            <stringProp name="Argument.value">5223450000000015</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="MCNOENR" elementType="Argument">
+            <stringProp name="Argument.name">MCNOENR</stringProp>
+            <stringProp name="Argument.value">5186150000002228</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="CF33" elementType="Argument">
+            <stringProp name="Argument.name">CF33</stringProp>
+            <stringProp name="Argument.value">881PI</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="CF41" elementType="Argument">
+            <stringProp name="Argument.name">CF41</stringProp>
+            <stringProp name="Argument.value">32319276</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="CF42" elementType="Argument">
+            <stringProp name="Argument.name">CF42</stringProp>
+            <stringProp name="Argument.value">395000         </stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="CF93" elementType="Argument">
+            <stringProp name="Argument.name">CF93</stringProp>
+            <stringProp name="Argument.value">CHASE</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="CF94" elementType="Argument">
+            <stringProp name="Argument.name">CF94</stringProp>
+            <stringProp name="Argument.value">881PI</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="CF100" elementType="Argument">
+            <stringProp name="Argument.name">CF100</stringProp>
+            <stringProp name="Argument.value">00000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="CF63VS" elementType="Argument">
+            <stringProp name="Argument.name">CF63VS</stringProp>
+            <stringProp name="Argument.value">0315480265818822704</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="CF63MC" elementType="Argument">
+            <stringProp name="Argument.name">CF63MC</stringProp>
+            <stringProp name="Argument.value">0112MDUTM88ZE   </stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="CF24CSTO" elementType="Argument">
+            <stringProp name="Argument.name">CF24CSTO</stringProp>
+            <stringProp name="Argument.value">100</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="CF25CSTO" elementType="Argument">
+            <stringProp name="Argument.name">CF25CSTO</stringProp>
+            <stringProp name="Argument.value">1779</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="CF32" elementType="Argument">
+            <stringProp name="Argument.name">CF32</stringProp>
+            <stringProp name="Argument.value">88105</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="COUNT" elementType="Argument">
+            <stringProp name="Argument.name">COUNT</stringProp>
+            <stringProp name="Argument.value">a</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random Variable" enabled="true">
+        <stringProp name="maximumValue">900000</stringProp>
+        <stringProp name="minimumValue">100000</stringProp>
+        <stringProp name="outputFormat">000000</stringProp>
+        <boolProp name="perThread">false</boolProp>
+        <stringProp name="randomSeed">${__time(HHmmss)}</stringProp>
+        <stringProp name="variableName">INI</stringProp>
+      </RandomVariableConfig>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="ELENCO_POS_six_diff" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="TESTCASES" enabled="true"/>
+        <hashTree>
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor GW WL" enabled="true">
+            <stringProp name="scriptLanguage">groovy</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="script">import it.netsw.coms.proto.iso.core.IsoMessage;
+import it.netsw.coms.proto.iso.modsia.IsoModSia;
+import org.jpos.iso.*;
+import it.netsw.coms.proto.iso.impl.*;
+import java.lang.*;
+import it.netsw.util.FmtUtil;
+import org.apache.commons.lang.StringUtils;
+
+log.info(&quot;---------------------&quot;)
+	Date d = new Date ();
+	   String day = org.jpos.iso.ISODate.formatDate(d, &quot;DDD&quot;, TimeZone.getDefault());
+	   if(props.get(&quot;DAY&quot;)!=null ){
+	   	if( props.get(&quot;DAY&quot;)!=day){
+	   	props.clear();
+	   	}
+	   }
+	   
+      String year = org.jpos.iso.ISODate.formatDate(d, &quot;yy&quot;, TimeZone.getDefault());
+      year = year.substring(1);
+      dt= year + day;
+    vars.put(&quot;JULIAN&quot;,dt);
+     props.setProperty(&quot;DAY&quot;,day);  
+
+//if(props.get(&quot;STOREDJULIAN&quot;)!=dt)){
+
+     int inistan =Integer.parseInt(vars.get(&quot;INI&quot;));
+     if(props.get(&quot;COUNT&quot;)==null){
+     	inistan++;
+     vars.put(&quot;COUNT&quot;, inistan.toString()); 
+     sampler.addField(&quot;11&quot;,vars.get(&quot;COUNT&quot;));
+     log.info(&quot;counter......:&quot;+vars.get(&quot;COUNT&quot;));
+    }else{
+    	 int  count =Integer.parseInt(props.get(&quot;COUNT&quot;));
+    	 count++;
+    	 vars.put(&quot;COUNT&quot;,count.toString());
+    	  sampler.addField(&quot;11&quot;,vars.get(&quot;COUNT&quot;));
+    	 log.info(&quot;counter::::::::&quot;+vars.get(&quot;COUNT&quot;));
+    }
+    props.setProperty(&quot;COUNT&quot;, vars.get(&quot;COUNT&quot;));
+
+log.info(&quot;************************&quot;)
+log.info(ctx.getClass().getName());
+log.info(&quot;Sending Request:&quot;+sampler.getRequest());
+log.info(&quot;Packed infoooooo &apos;{}&apos;: &quot;+ ISOUtil.byte2hex(sampler.getRequest().pack()));
+IsoFormatterAC93 formatter = new IsoFormatterAC93();
+//IsoFormatter93Ebcdic formatter = new IsoFormatter93Ebcdic();
+
+IsoMessage msgin = formatter.newMessage();
+log.info(&quot;Request message: &quot;+msgin.unpack(sampler.getRequest().pack()));
+println(&quot;[TX]&quot;+msgin);
+ IsoModSia mac = new IsoModSia();
+ String key = &quot;01234567&quot;;
+ String CALMAC;
+ log.info(&quot;MSG &gt;&gt;&gt;&quot;+msgin+&quot;&lt;&lt;&lt;&quot;);
+if (!msgin.toString().contains(&quot;Msg=142&quot;)){
+   CALMAC=mac.mac_110x(msgin, key);
+} else {
+	CALMAC=mac.mac_142x(msgin, key);
+}
+ log.info(&quot;Calculated MAC:&quot;+CALMAC);
+ vars.put(&quot;CALMAC&quot;,CALMAC);
+sampler.addField(&quot;128&quot;,CALMAC);
+
+log.info(&quot;Request message2 : &quot;+msgin.unpack(sampler.getRequest().pack()));
+log.info(&quot;---------------LEN  ---------&quot;+new String(msgin.pack()).length());
+String txlen=&quot;&quot;+msgin.getBinaryBuffer().length;
+String hl = StringUtils.leftPad(txlen, 5, &quot;0&quot;);
+String H5Header=ISOUtil.byte2hex(hl.getBytes());
+ log.info(&quot;.....................&quot;+H5Header);
+ props.put(&quot;H5Header&quot;,H5Header)
+ String hl4 = StringUtils.leftPad(txlen, 4, &quot;0&quot;);
+String H4Header=ISOUtil.byte2hex(hl4.getBytes());
+ log.info(&quot;.....................&quot;+H4Header);
+ props.put(&quot;H4Header&quot;,H4Header)
+ //sampler.setHeader(H5Header);
+// msgin.setHeaderValue(new String(msgin.pack()).length().toString().getBytes());
+ log.info(&quot;---------------HEADER LENTH---------&quot;+msgin.getHeaderLen());
+ log.info(&quot;---------------HEADER VALUE---------&quot;+msgin.getHeaderValue());
+ log.info(&quot;---------------BITMAP STRING---------&quot;+msgin.getBitmapAsString());
+log.info(&quot;---------------LEN STRING---------&quot;+new String(msgin.pack()));
+</stringProp>
+          </JSR223PreProcessor>
+          <hashTree/>
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables   25000 TEST GW WL" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="TEST32" elementType="Argument">
+                <stringProp name="Argument.name">TEST32</stringProp>
+                <stringProp name="Argument.value">03268</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="TEST33" elementType="Argument">
+                <stringProp name="Argument.name">TEST33</stringProp>
+                <stringProp name="Argument.value">80561</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="TEST41" elementType="Argument">
+                <stringProp name="Argument.name">TEST41</stringProp>
+                <stringProp name="Argument.value">12340005</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="TEST42" elementType="Argument">
+                <stringProp name="Argument.name">TEST42</stringProp>
+                <stringProp name="Argument.value">910152400001   </stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="TEST93" elementType="Argument">
+                <stringProp name="Argument.name">TEST93</stringProp>
+                <stringProp name="Argument.value">00071</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="TEST94" elementType="Argument">
+                <stringProp name="Argument.name">TEST94</stringProp>
+                <stringProp name="Argument.value">80561</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="TEST100" elementType="Argument">
+                <stringProp name="Argument.name">TEST100</stringProp>
+                <stringProp name="Argument.value">12928</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="TESTPAN01" elementType="Argument">
+                <stringProp name="Argument.name">TESTPAN01</stringProp>
+                <stringProp name="Argument.value">4176661000001015</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </Arguments>
+          <hashTree/>
+          <nz.co.breakpoint.jmeter.iso8583.ISO8583Config guiclass="TestBeanGUI" testclass="nz.co.breakpoint.jmeter.iso8583.ISO8583Config" testname="ISO8583 Connection Configuration 25000 TEST GW WL GT" enabled="true">
+            <stringProp name="classname">ASCIIChannel</stringProp>
+            <stringProp name="header"></stringProp>
+            <stringProp name="host">127.0.0.1</stringProp>
+            <stringProp name="keyPassword"></stringProp>
+            <stringProp name="maxConnections"></stringProp>
+            <stringProp name="mtiMapping"></stringProp>
+            <stringProp name="packager">C:/Workspace_inteliJ/ALL/ACFS_JMETER/doc/packager/ISOAC93.xml</stringProp>
+            <stringProp name="port">25010</stringProp>
+            <boolProp name="reuseConnection">true</boolProp>
+            <stringProp name="storePassword"></stringProp>
+            <collectionProp name="channelConfig"/>
+            <stringProp name="keystore"></stringProp>
+            <collectionProp name="muxKeyConfig"/>
+            <stringProp name="configKey"></stringProp>
+            <stringProp name="connectionSelection">connectionSelection.LAST</stringProp>
+            <stringProp name="requestListener"></stringProp>
+          </nz.co.breakpoint.jmeter.iso8583.ISO8583Config>
+          <hashTree/>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="testcases" enabled="true"/>
+          <hashTree>
+            <nz.co.breakpoint.jmeter.iso8583.ISO8583Sampler guiclass="TestBeanGUI" testclass="nz.co.breakpoint.jmeter.iso8583.ISO8583Sampler" testname="T01_1100_L1010155434C_WL_GT" enabled="true">
+              <stringProp name="header"></stringProp>
+              <stringProp name="responseCodeField">39</stringProp>
+              <stringProp name="successResponseCode">000</stringProp>
+              <intProp name="timeout">20000</intProp>
+              <stringProp name="trailer"></stringProp>
+              <collectionProp name="fields">
+                <elementProp name="0" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="0">
+                  <stringProp name="content">1100</stringProp>
+                </elementProp>
+                <elementProp name="2 " elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="2 ">
+                  <stringProp name="content">4761739001010119</stringProp>
+                </elementProp>
+                <elementProp name="3 " elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="3 ">
+                  <stringProp name="content">000000</stringProp>
+                </elementProp>
+                <elementProp name="4" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="4">
+                  <stringProp name="content">000000006138</stringProp>
+                </elementProp>
+                <elementProp name="11" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="11">
+                  <stringProp name="content">017021</stringProp>
+                </elementProp>
+                <elementProp name="12" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="12">
+                  <stringProp name="content">250617124440</stringProp>
+                </elementProp>
+                <elementProp name="14" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="14">
+                  <stringProp name="content">3006</stringProp>
+                </elementProp>
+                <elementProp name="22" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="22">
+                  <stringProp name="content">L1010155434C</stringProp>
+                </elementProp>
+                <elementProp name="23" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="23">
+                  <stringProp name="content">001</stringProp>
+                </elementProp>
+                <elementProp name="24" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="24">
+                  <stringProp name="content">100</stringProp>
+                </elementProp>
+                <elementProp name="25" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="25">
+                  <stringProp name="content">1503</stringProp>
+                </elementProp>
+                <elementProp name="26" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="26">
+                  <stringProp name="content">5712</stringProp>
+                </elementProp>
+                <elementProp name="32" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="32">
+                  <stringProp name="content">09514</stringProp>
+                </elementProp>
+                <elementProp name="33" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="33">
+                  <stringProp name="content">88104</stringProp>
+                </elementProp>
+                <elementProp name="35" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="35">
+                  <stringProp name="content">4761739001010119=3006011758928889</stringProp>
+                </elementProp>
+                <elementProp name="37" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="37">
+                  <stringProp name="content">${JULIAN}${__time(HH)}${COUNT}</stringProp>
+                </elementProp>
+                <elementProp name="41" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="41">
+                  <stringProp name="content">99991270</stringProp>
+                </elementProp>
+                <elementProp name="42" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="42">
+                  <stringProp name="content">35060383      </stringProp>
+                </elementProp>
+                <elementProp name="43" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="43">
+                  <stringProp name="content">JMETER T01\VIA TEST TEST 1\ROMA\00145     RM ITA</stringProp>
+                </elementProp>
+                <elementProp name="49" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="49">
+                  <stringProp name="content">978</stringProp>
+                </elementProp>
+                <elementProp name="55" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="55">
+                  <stringProp name="content">9F26080DAF6F376A73D23682025C009F360200019F0702FF009F2701809F100706010A03A00000950542400080009F370442F10DFC9A032506179B02E8009F34031E03009F3303E0F8C84F07A00000000310108407A00000000310109C01009F02060000000061389F1A0203805F2A0209789F3501229B02E8005F340101</stringProp>
+                </elementProp>
+                <elementProp name="93" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="93">
+                  <stringProp name="content">00025</stringProp>
+                </elementProp>
+                <elementProp name="94" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="94">
+                  <stringProp name="content">88104</stringProp>
+                </elementProp>
+                <elementProp name="100" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="100">
+                  <stringProp name="content">00024</stringProp>
+                </elementProp>
+              </collectionProp>
+              <stringProp name="configKey"></stringProp>
+            </nz.co.breakpoint.jmeter.iso8583.ISO8583Sampler>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
