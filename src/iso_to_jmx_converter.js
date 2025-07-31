@@ -1,5 +1,12 @@
 const fs = require('fs');
 const path = require('path');
+const {
+    printExtractedFields,
+    printSuccess,
+    printError,
+    printInfo,
+    printHeader
+} = require('./util/log.js');
 
 // Funzione per generare timestamp
 function generateTimestamp() {
@@ -90,8 +97,11 @@ function processTemplateFile(templatePath, newXMLString, outputPath) {
         
         // Scrivi il nuovo file
         fs.writeFileSync(outputPath, newContent, 'utf8');
-        
-        console.log(`File di output creato: ${outputPath}`);
+
+        // Al posto dei tuoi console.log, usa:
+        printHeader('CONVERSIONE COMPLETATA');
+        printSuccess('FILE CREATO CON SUCCESSO');
+        printInfo(`File di output: ${outputPath}`);
         
     } catch (error) {
         console.error('Errore durante l\'elaborazione del template:', error.message);
@@ -111,17 +121,17 @@ function main() {
     const inputText = process.argv[2];
     const timestamp = generateTimestamp();
     
-    console.log('Input ricevuto:', inputText);
-    console.log('Timestamp generato:', timestamp);
+    // console.log('Input ricevuto:', inputText);
     
     // Estrai i campi ISO8583
     const fields = parseISO8583Fields(inputText);
-    console.log('Campi estratti:', fields);
+    printExtractedFields(fields);
+    // console.log('\n Campi estratti:', fields);
     
     // Crea la stringa XML per JMeter
     const jmeterXMLString = createJMeterXMLString(fields, timestamp);
-    console.log('Stringa XML generata:');
-    console.log(jmeterXMLString);
+    // console.log('Stringa XML generata:');
+    // console.log(jmeterXMLString);
 
     // Definisci i percorsi dei file
     const templatePath = './template/template.jmx'; // Il tuo file template
