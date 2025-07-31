@@ -8,7 +8,7 @@
     "test": "echo \"No tests specified\" && exit 0"
   },
   "bin": {
-    "iso8584-converter": "./src/iso_to_jmx_converter.js"
+    "conviso": "./src/iso_to_jmx_converter.js"
   },
   "keywords": [
     "iso8583",
