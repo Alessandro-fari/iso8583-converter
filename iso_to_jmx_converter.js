@@ -39,7 +39,7 @@ function parseISO8583Fields(inputText) {
 
 // Funzione per creare la stringa XML per JMeter
 function createJMeterXMLString(fields, timestamp) {
-    let xmlString = `            <hashTree>
+    let xmlString = `
              <nz.co.breakpoint.jmeter.iso8583.ISO8583Sampler guiclass="TestBeanGUI" testclass="nz.co.breakpoint.jmeter.iso8583.ISO8583Sampler" testname="Nuovo nome${timestamp}" enabled="true">
               <stringProp name="header"></stringProp>
               <stringProp name="responseCodeField">39</stringProp>
@@ -51,13 +51,9 @@ function createJMeterXMLString(fields, timestamp) {
     // Aggiungi tutti i campi estratti
     fields.forEach((field, index) => {
         xmlString += `
-<elementProp name="${field.name}" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="${field.name}">
+                <elementProp name="${field.name}" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="${field.name}">
                   <stringProp name="content">${field.content}</stringProp>
                 </elementProp>`;
-        // Aggiungi una riga vuota solo se non e' l'ultimo elemento
-        if (index < fields.length - 1) {
-            xmlString += '\n';
-        }
     });
     
     // Chiudi la stringa XML

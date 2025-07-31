@@ -434,6 +434,89 @@ log.info(&quot;---------------LEN STRING---------&quot;+new String(msgin.pack())
               <stringProp name="configKey"></stringProp>
             </nz.co.breakpoint.jmeter.iso8583.ISO8583Sampler>
             <hashTree/>
+            <nz.co.breakpoint.jmeter.iso8583.ISO8583Sampler guiclass="TestBeanGUI" testclass="nz.co.breakpoint.jmeter.iso8583.ISO8583Sampler" testname="T01_1100_L1010155434C_WL_GT" enabled="true">
+              <stringProp name="header"></stringProp>
+              <stringProp name="responseCodeField">39</stringProp>
+              <stringProp name="successResponseCode">000</stringProp>
+              <intProp name="timeout">20000</intProp>
+              <stringProp name="trailer"></stringProp>
+              <collectionProp name="fields">
+                <elementProp name="0" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="0">
+                  <stringProp name="content">1100</stringProp>
+                </elementProp>
+                <elementProp name="2 " elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="2 ">
+                  <stringProp name="content">4761739001010119</stringProp>
+                </elementProp>
+                <elementProp name="3 " elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="3 ">
+                  <stringProp name="content">000000</stringProp>
+                </elementProp>
+                <elementProp name="4" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="4">
+                  <stringProp name="content">000000006138</stringProp>
+                </elementProp>
+                <elementProp name="11" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="11">
+                  <stringProp name="content">017021</stringProp>
+                </elementProp>
+                <elementProp name="12" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="12">
+                  <stringProp name="content">250617124440</stringProp>
+                </elementProp>
+                <elementProp name="14" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="14">
+                  <stringProp name="content">3006</stringProp>
+                </elementProp>
+                <elementProp name="22" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="22">
+                  <stringProp name="content">L1010155434C</stringProp>
+                </elementProp>
+                <elementProp name="23" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="23">
+                  <stringProp name="content">001</stringProp>
+                </elementProp>
+                <elementProp name="24" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="24">
+                  <stringProp name="content">100</stringProp>
+                </elementProp>
+                <elementProp name="25" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="25">
+                  <stringProp name="content">1503</stringProp>
+                </elementProp>
+                <elementProp name="26" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="26">
+                  <stringProp name="content">5712</stringProp>
+                </elementProp>
+                <elementProp name="32" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="32">
+                  <stringProp name="content">09514</stringProp>
+                </elementProp>
+                <elementProp name="33" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="33">
+                  <stringProp name="content">88104</stringProp>
+                </elementProp>
+                <elementProp name="35" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="35">
+                  <stringProp name="content">4761739001010119=3006011758928889</stringProp>
+                </elementProp>
+                <elementProp name="37" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="37">
+                  <stringProp name="content">${JULIAN}${__time(HH)}${COUNT}</stringProp>
+                </elementProp>
+                <elementProp name="41" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="41">
+                  <stringProp name="content">99991270</stringProp>
+                </elementProp>
+                <elementProp name="42" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="42">
+                  <stringProp name="content">35060383      </stringProp>
+                </elementProp>
+                <elementProp name="43" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="43">
+                  <stringProp name="content">JMETER T01\VIA TEST TEST 1\ROMA\00145     RM ITA</stringProp>
+                </elementProp>
+                <elementProp name="49" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="49">
+                  <stringProp name="content">978</stringProp>
+                </elementProp>
+                <elementProp name="55" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="55">
+                  <stringProp name="content">9F26080DAF6F376A73D23682025C009F360200019F0702FF009F2701809F100706010A03A00000950542400080009F370442F10DFC9A032506179B02E8009F34031E03009F3303E0F8C84F07A00000000310108407A00000000310109C01009F02060000000061389F1A0203805F2A0209789F3501229B02E8005F340101</stringProp>
+                </elementProp>
+                <elementProp name="93" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="93">
+                  <stringProp name="content">00025</stringProp>
+                </elementProp>
+                <elementProp name="94" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="94">
+                  <stringProp name="content">88104</stringProp>
+                </elementProp>
+                <elementProp name="100" elementType="nz.co.breakpoint.jmeter.iso8583.MessageField" testname="100">
+                  <stringProp name="content">00024</stringProp>
+                </elementProp>
+              </collectionProp>
+              <stringProp name="configKey"></stringProp>
+            </nz.co.breakpoint.jmeter.iso8583.ISO8583Sampler>
+            <hashTree/>
           </hashTree>
         </hashTree>
       </hashTree>
