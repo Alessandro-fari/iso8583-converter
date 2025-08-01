@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
-
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
+const yargs = require('yargs/yargs');
+const { hideBin } = require('yargs/helpers');
 const {
     printExtractedFields,
     printSuccess,
@@ -98,7 +99,7 @@ function processTemplateFile(templatePath, newXMLString, outputPath) {
         const insertAfterPosition = insertPosition + searchPattern.length;
         
         // Crea il nuovo contenuto
-        const newContent = templateContent.slice(0, insertAfterPosition) + 
+        const newContent = templateContent.slice(0, insertAfterPosition) +
                           '\n' + newXMLString +
                           templateContent.slice(insertAfterPosition);
         
@@ -118,51 +119,75 @@ function processTemplateFile(templatePath, newXMLString, outputPath) {
 
 // Funzione principale
 function main() {
-    // Controllo argomenti da riga di comando
-    if (process.argv.length < 3) {
-        console.log('Uso: node iso-to-jmx-converter.js "testo del file da trasformare"');
-        console.log('Esempio: node iso-to-jmx-converter.js "2025-07-31 13:03:16.399 INFO [GT-AXEPTA-RDR-65] - RX <Msg=1100> <F2=4895251000000009> <F3=000000>"');
-        process.exit(1);
+    const argv = yargs(hideBin(process.argv))
+        .usage('Uso: $0 <testo-iso> [opzioni]')
+        .command('$0 <isoText>', 'Converte un messaggio ISO8583 in formato JMX', (yargs) => {
+            yargs.positional('isoText', {
+                describe: 'Il testo del messaggio ISO8583 da convertire',
+                type: 'string'
+            });
+        })
+        .option('o', {
+            alias: 'output',
+            describe: 'Percorso del file JMX di output da aggiornare. Se non specificato, viene creato un nuovo file.',
+            type: 'string'
+        })
+        .help('h')
+        .alias('h', 'help')
+        .argv;
+
+    const inputText = argv.isoText;
+    if (!inputText) {
+        yargs.showHelp();
+        return;
     }
     
-    const inputText = process.argv[2];
     const timestamp = generateTimestamp();
-    
-    // console.log('Input ricevuto:', inputText);
     
     // Estrai i campi ISO8583
     const fields = parseISO8583Fields(inputText);
     printExtractedFields(fields);
-    // console.log('\n Campi estratti:', fields);
     
     // Crea la stringa XML per JMeter
     const jmeterXMLString = createJMeterXMLString(fields, timestamp);
-    // console.log('Stringa XML generata:');
-    // console.log(jmeterXMLString);
 
-    // Definisci i percorsi dei file in modo dinamico
+    // Definisci i percorsi dei file
     const homeDir = os.homedir();
     const outputDir = path.join(homeDir, '.iso8583-converter', 'output');
-    const templatePath = path.join(__dirname, '..', 'template', 'template.jmx'); // Riferimento relativo allo script
-    const outputPath = path.join(outputDir, `output_${timestamp}.jmx`);
-
-    // Crea la directory di output se non esiste
-    if (!fs.existsSync(outputDir)) {
-        fs.mkdirSync(outputDir, { recursive: true });
-    }
+    const templatePath = path.join(__dirname, '..', 'template', 'template.jmx');
     
+    let outputPath;
+    if (argv.output) {
+        outputPath = path.resolve(argv.output); // Usa il percorso fornito
+    } else {
+        // Crea la directory di output se non esiste
+        if (!fs.existsSync(outputDir)) {
+            fs.mkdirSync(outputDir, { recursive: true });
+        }
+        outputPath = path.join(outputDir, `output_${timestamp}.jmx`);
+    }
+
     // Controlla se il file template esiste
     if (!fs.existsSync(templatePath)) {
-        console.error(`File template non trovato: ${templatePath}`);
-        console.log('Crea un file template.jmx nella stessa directory dello script');
+        printError(`File template non trovato: ${templatePath}`);
+        printInfo('Crea un file template.jmx nella directory \'template\' del progetto.');
         process.exit(1);
     }
     
+    // Se il file di output esiste già (perché è stato passato con -o), lo usiamo come template
+    const finalTemplatePath = fs.existsSync(outputPath) ? outputPath : templatePath;
+
     // Processa il file template
-    processTemplateFile(templatePath, jmeterXMLString, outputPath);
+    processTemplateFile(finalTemplatePath, jmeterXMLString, outputPath);
 }
 
 // Esegui la funzione principale
 if (require.main === module) {
     main();
 }
+
+module.exports = {
+    parseISO8583Fields,
+    createJMeterXMLString,
+    processTemplateFile
+};
