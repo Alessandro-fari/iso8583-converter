@@ -49,8 +49,53 @@ function parseISO8583Fields(inputText) {
     return fields;
 }
 
+// Funzione per gestire i messaggi di reversal (1400/1401)
+function processReversalMessage(originalFields, isReversal) {
+    if (!isReversal) {
+        return originalFields;
+    }
+    
+    const processedFields = [...originalFields];
+    
+    // 1. Cambiare il message type da 1100 a 1400
+    const msgField = processedFields.find(field => field.name === "0");
+    if (msgField && msgField.content === "1100") {
+        msgField.content = "1400";
+    }
+    
+    // 2. Mantenere i valori originali di F37 e F38 (non sostituire con variabili JMeter)
+    // Questo viene gestito più avanti nella logica di creazione XML
+    
+    // 3. Creare il campo 56 con la formula: msgcode(1100) + F11 + F12 + "05" + F32
+    const f11 = processedFields.find(field => field.name === "11");
+    const f12 = processedFields.find(field => field.name === "12");
+    const f32 = processedFields.find(field => field.name === "32");
+    
+    if (f11 && f12 && f32) {
+        const field56Value = "1100" + f11.content + f12.content + "05" + f32.content;
+        
+        // Rimuovi il campo 56 esistente se presente
+        const existingF56Index = processedFields.findIndex(field => field.name === "56");
+        if (existingF56Index !== -1) {
+            processedFields.splice(existingF56Index, 1);
+        }
+        
+        // Aggiungi il nuovo campo 56
+        processedFields.push({
+            name: "56",
+            content: field56Value
+        });
+        
+        printInfo(`Campo 56 generato per reversal: ${field56Value}`);
+    } else {
+        printError("Impossibile creare il campo 56: mancano i campi F11, F12 o F32");
+    }
+    
+    return processedFields;
+}
+
 // Funzione per creare la stringa XML per JMeter
-function createJMeterXMLString(fields, timestamp) {
+function createJMeterXMLString(fields, timestamp, isReversal = false) {
     let xmlString = `
              <nz.co.breakpoint.jmeter.iso8583.ISO8583Sampler guiclass="TestBeanGUI" testclass="nz.co.breakpoint.jmeter.iso8583.ISO8583Sampler" testname="NewTest-${timestamp}" enabled="true">
               <stringProp name="header"></stringProp>
@@ -62,7 +107,9 @@ function createJMeterXMLString(fields, timestamp) {
     
     // Aggiungi tutti i campi estratti
     fields.forEach((field, index) => {
-        if (field.name == '37') {
+        // Per i reversal, mantenere i valori originali di F37 e F38
+        // Per i messaggi normali, sostituire F37 con variabili JMeter
+        if (field.name == '37' && !isReversal) {
             field.content ='${JULIAN}${__time(HH)}${COUNT}';
         }
         xmlString += `
@@ -132,6 +179,12 @@ function main() {
             describe: 'Percorso del file JMX di output da aggiornare. Se non specificato, viene creato un nuovo file.',
             type: 'string'
         })
+        .option('r', {
+            alias: 'reversal',
+            describe: 'Genera un messaggio di reversal (1400) invece di un messaggio normale (1100)',
+            type: 'boolean',
+            default: false
+        })
         .help('h')
         .alias('h', 'help')
         .argv;
@@ -143,13 +196,21 @@ function main() {
     }
     
     const timestamp = generateTimestamp();
+    const isReversal = argv.reversal;
     
     // Estrai i campi ISO8583
-    const fields = parseISO8583Fields(inputText);
+    let fields = parseISO8583Fields(inputText);
+    
+    // Processa per messaggi di reversal se richiesto
+    if (isReversal) {
+        printInfo("Generazione messaggio 1400");
+        fields = processReversalMessage(fields, isReversal);
+    }
+    
     printExtractedFields(fields);
     
     // Crea la stringa XML per JMeter
-    const jmeterXMLString = createJMeterXMLString(fields, timestamp);
+    const jmeterXMLString = createJMeterXMLString(fields, timestamp, isReversal);
 
     // Definisci i percorsi dei file
     const homeDir = os.homedir();
@@ -189,5 +250,6 @@ if (require.main === module) {
 module.exports = {
     parseISO8583Fields,
     createJMeterXMLString,
-    processTemplateFile
+    processTemplateFile,
+    processReversalMessage
 };
