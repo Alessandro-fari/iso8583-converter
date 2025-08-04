@@ -1,9 +1,15 @@
-Esempio di richiesta per TEST nel progetto
-node src/iso_to_jmx_converter.js "2025-07-31 13:03:16.399 INFO [GT-AXEPTA-RDR-65] - RX <Msg=1100> <F2=4895251000000009> <F3=000000>"
+Applicazione che permette di convertire un messaggio iso con questa struttura "<Msg=1100> <F2=4895251000000009> <F3=000000>"
+in un file di test per jmeter da importare
 
-Per usare il link:
-npm link
+Supporto anche ai reversal in automatico(Tranne gestione del F38)
 
+# Installazione
+Scaricare node.js dal seguente link https://nodejs.org/en/download
+
+npm link nella directory del progetto ISO8583-CONVERTER
+
+
+# Utilizzo
 # Nome del link: conviso
 Esempio di richiesta con "conviso" nel progetto
 conviso "2025-07-31 13:03:16.399 INFO [GT-AXEPTA-RDR-65] - RX <Msg=1100> <F2=4895251000000009> <F3=000000>"
