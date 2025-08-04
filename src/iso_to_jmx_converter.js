@@ -184,7 +184,7 @@ function main() {
         })
         .option('o', {
             alias: 'output',
-            describe: 'Percorso del file JMX di output da aggiornare. Se non specificato, viene creato un nuovo file.',
+            describe: 'Percorso del file JMX di output da aggiornare. Se non specificato, viene creato un nuovo file sotto C:\\Users\\<username>\\.iso8583-converter\\output\\',
             type: 'string'
         })
         .option('r', {
