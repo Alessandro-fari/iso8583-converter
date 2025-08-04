@@ -10,7 +10,8 @@ const {
     printSuccess,
     printError,
     printInfo,
-    printHeader
+    printHeader,
+    printWarning
 } = require('./util/log.js');
 
 // Funzione per generare timestamp
@@ -129,7 +130,7 @@ function createJMeterXMLString(fields, timestamp, isReversal = false) {
 }
 
 // Funzione per leggere il template e inserire la nuova stringa
-function processTemplateFile(templatePath, newXMLString, outputPath) {
+function processTemplateFile(templatePath, newXMLString, outputPath, isReversal = false) {
     try {
         // Leggi il file template
         const templateContent = fs.readFileSync(templatePath, 'utf8');
@@ -155,8 +156,15 @@ function processTemplateFile(templatePath, newXMLString, outputPath) {
 
         // Al posto dei tuoi console.log, usa:
         printHeader('CONVERSIONE COMPLETATA');
+        console.log('');
         printSuccess('FILE CREATO CON SUCCESSO');
         printInfo(`File di output: ${outputPath}`);
+        
+        // Warning specifico per i messaggi di reversal riguardo F38
+        if (isReversal) {
+            console.log(''); // Riga vuota per separazione
+            printWarning('PROMEMORIA REVERSAL: Aggiungi il campo F38 (Authorization Code) al test manualmente, campo presente nel 1110');
+        }
         
     } catch (error) {
         console.error('Errore durante l\'elaborazione del template:', error.message);
@@ -239,7 +247,7 @@ function main() {
     const finalTemplatePath = fs.existsSync(outputPath) ? outputPath : templatePath;
 
     // Processa il file template
-    processTemplateFile(finalTemplatePath, jmeterXMLString, outputPath);
+    processTemplateFile(finalTemplatePath, jmeterXMLString, outputPath, isReversal);
 }
 
 // Esegui la funzione principale
