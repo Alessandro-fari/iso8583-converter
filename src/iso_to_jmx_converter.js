@@ -63,10 +63,10 @@ function processReversalMessage(originalFields, isReversal) {
     
     const processedFields = [...originalFields];
     
-    // 1. Cambiare il message type da 1100 a 1400
+    // 1. Cambiare il message type da 1100 a 1420 (storno)
     const msgField = processedFields.find(field => field.name === "0");
     if (msgField && msgField.content === "1100") {
-        msgField.content = "1400";
+        msgField.content = "1420";
     }
     
     // 2. Mantenere i valori originali di F37 e F38 (non sostituire con variabili JMeter)
@@ -194,7 +194,7 @@ function main() {
         })
         .option('r', {
             alias: 'reversal',
-            describe: 'Genera un messaggio di reversal (1400) invece di un messaggio normale (1100)',
+            describe: 'Genera un messaggio di storno (1420) invece di un messaggio normale (1100)',
             type: 'boolean',
             default: false
         })
@@ -216,7 +216,7 @@ function main() {
     
     // Processa per messaggi di reversal se richiesto
     if (isReversal) {
-        printInfo("Generazione messaggio 1400");
+        printInfo("Generazione messaggio 1420");
         fields = processReversalMessage(fields, isReversal);
     }
     
