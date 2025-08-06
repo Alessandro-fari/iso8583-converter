@@ -41,6 +41,11 @@ function parseISO8583Fields(inputText) {
         const fieldNumber = match[1];
         const fieldValue = match[2];
         
+        // Escludi il campo F128 perché viene generato automaticamente da JMeter
+        if (fieldNumber === '128') {
+            continue;
+        }
+        
         fields.push({
             name: fieldNumber,
             content: fieldValue
