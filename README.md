@@ -41,6 +41,21 @@ conviso -r "RX <Msg=1100> <F2=4895251000000009> <F3=000000> <F11=123456> <F12=14
 conviso -r -o /path/to/output.jmx "RX <Msg=1100> <F11=123456> <F12=140530> <F32=12345678>"
 ```
 
+#### Configurare file di output predefinito
+```bash
+conviso -c C:\Users\a.farina\.iso8583-converter\output\mytest.jmx
+```
+
+#### Usare file configurato precedentemente
+```bash
+conviso "RX <Msg=1100> <F11=123456> <F12=140530>"
+```
+
+#### Ignorare configurazione e usare percorso di default
+```bash
+conviso -d "RX <Msg=1100> <F2=4895251000000009> <F3=000000>"
+```
+
 ## Build
 
 Per creare un pacchetto distribuibile:

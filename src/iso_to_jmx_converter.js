@@ -20,6 +20,43 @@ function generateTimestamp() {
     return now.toISOString().replace(/[:.]/g, '-').slice(0, -5);
 }
 
+// Funzioni per gestire la configurazione
+function getConfigPath() {
+    const homeDir = os.homedir();
+    return path.join(homeDir, '.iso8583-converter', 'config.json');
+}
+
+function loadConfig() {
+    const configPath = getConfigPath();
+    try {
+        if (fs.existsSync(configPath)) {
+            const configData = fs.readFileSync(configPath, 'utf8');
+            return JSON.parse(configData);
+        }
+    } catch (error) {
+        printWarning(`Errore nel caricamento della configurazione: ${error.message}`);
+    }
+    return null;
+}
+
+function saveConfig(outputPath) {
+    const configPath = getConfigPath();
+    const configDir = path.dirname(configPath);
+    
+    try {
+        // Crea la directory se non esiste
+        if (!fs.existsSync(configDir)) {
+            fs.mkdirSync(configDir, { recursive: true });
+        }
+        
+        const config = { outputPath: path.resolve(outputPath) };
+        fs.writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf8');
+        printInfo(`Configurazione salvata: ${outputPath}`);
+    } catch (error) {
+        printError(`Errore nel salvataggio della configurazione: ${error.message}`);
+    }
+}
+
 // Funzione per estrarre i campi ISO8583 dal testo di input
 function parseISO8583Fields(inputText) {
     const fields = [];
@@ -181,9 +218,9 @@ function processTemplateFile(templatePath, newXMLString, outputPath, isReversal 
 function main() {
     const argv = yargs(hideBin(process.argv))
         .usage('Uso: $0 <testo-iso> [opzioni]')
-        .command('$0 <isoText>', 'Converte un messaggio ISO8583 in formato JMX', (yargs) => {
+        .command('$0 [isoText]', 'Converte un messaggio ISO8583 in formato JMX', (yargs) => {
             yargs.positional('isoText', {
-                describe: 'Il testo del messaggio ISO8583 da convertire',
+                describe: 'Il testo del messaggio ISO8583 da convertire (opzionale se si usa solo -c per configurare)',
                 type: 'string'
             });
         })
@@ -198,11 +235,30 @@ function main() {
             type: 'boolean',
             default: false
         })
+        .option('c', {
+            alias: 'config',
+            describe: 'Percorso del file JMX da configurare come output predefinito',
+            type: 'string'
+        })
+        .option('d', {
+            alias: 'default',
+            describe: 'Usa il percorso di output predefinito invece del file configurato',
+            type: 'boolean',
+            default: false
+        })
         .help('h')
         .alias('h', 'help')
         .argv;
 
     const inputText = argv.isoText;
+    
+    // Se è specificato solo -c per configurare, non serve il messaggio ISO
+    if (argv.config && !inputText) {
+        saveConfig(argv.config);
+        printInfo(`File configurato: ${path.resolve(argv.config)}`);
+        return;
+    }
+    
     if (!inputText) {
         yargs.showHelp();
         return;
@@ -231,14 +287,33 @@ function main() {
     const templatePath = path.join(__dirname, '..', 'template', 'template.jmx');
     
     let outputPath;
-    if (argv.output) {
-        outputPath = path.resolve(argv.output); // Usa il percorso fornito
-    } else {
-        // Crea la directory di output se non esiste
+    
+    // Gestisci le opzioni di configurazione
+    if (argv.config) {
+        // Salva il nuovo percorso di configurazione
+        saveConfig(argv.config);
+        outputPath = path.resolve(argv.config);
+    } else if (argv.output) {
+        // Usa il percorso specificato con -o
+        outputPath = path.resolve(argv.output);
+    } else if (argv.default) {
+        // Usa il percorso di default
         if (!fs.existsSync(outputDir)) {
             fs.mkdirSync(outputDir, { recursive: true });
         }
         outputPath = path.join(outputDir, `output_${timestamp}.jmx`);
+    } else {
+        // Cerca di usare il file configurato, altrimenti usa il default
+        const config = loadConfig();
+        if (config && config.outputPath) {
+            outputPath = config.outputPath;
+        } else {
+            // Usa il percorso di default
+            if (!fs.existsSync(outputDir)) {
+                fs.mkdirSync(outputDir, { recursive: true });
+            }
+            outputPath = path.join(outputDir, `output_${timestamp}.jmx`);
+        }
     }
 
     // Controlla se il file template esiste
