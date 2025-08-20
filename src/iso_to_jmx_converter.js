@@ -13,6 +13,7 @@ const {
     printHeader,
     printWarning
 } = require('./util/log.js');
+const { process1420TemplateMessage } = require('./template1420.js');
 
 // Funzione per generare timestamp
 function generateTimestamp() {
@@ -92,49 +93,12 @@ function parseISO8583Fields(inputText) {
     return fields;
 }
 
-// Funzione per gestire i messaggi di reversal (1400/1401)
+
+// Funzione per gestire i messaggi di reversal (1400/1401) - DEPRECATA
+// Ora i reversal usano direttamente process1420TemplateMessage()
 function processReversalMessage(originalFields, isReversal) {
-    if (!isReversal) {
-        return originalFields;
-    }
-    
-    const processedFields = [...originalFields];
-    
-    // 1. Cambiare il message type da 1100 a 1420 (storno)
-    const msgField = processedFields.find(field => field.name === "0");
-    if (msgField && msgField.content === "1100") {
-        msgField.content = "1420";
-    }
-    
-    // 2. Mantenere i valori originali di F37 e F38 (non sostituire con variabili JMeter)
-    // Questo viene gestito più avanti nella logica di creazione XML
-    
-    // 3. Creare il campo 56 con la formula: msgcode(1100) + F11 + F12 + "05" + F32
-    const f11 = processedFields.find(field => field.name === "11");
-    const f12 = processedFields.find(field => field.name === "12");
-    const f32 = processedFields.find(field => field.name === "32");
-    
-    if (f11 && f12 && f32) {
-        const field56Value = "1100" + f11.content + f12.content + "05" + f32.content;
-        
-        // Rimuovi il campo 56 esistente se presente
-        const existingF56Index = processedFields.findIndex(field => field.name === "56");
-        if (existingF56Index !== -1) {
-            processedFields.splice(existingF56Index, 1);
-        }
-        
-        // Aggiungi il nuovo campo 56
-        processedFields.push({
-            name: "56",
-            content: field56Value
-        });
-        
-        printInfo(`Campo 56 generato per reversal: ${field56Value}`);
-    } else {
-        printError("Impossibile creare il campo 56: mancano i campi F11, F12 o F32");
-    }
-    
-    return processedFields;
+    // Questa funzione non è più utilizzata
+    return originalFields;
 }
 
 // Funzione per creare la stringa XML per JMeter
@@ -270,10 +234,17 @@ function main() {
     // Estrai i campi ISO8583
     let fields = parseISO8583Fields(inputText);
     
+    // Determina il tipo di messaggio
+    const msgField = fields.find(field => field.name === "0");
+    const messageType = msgField ? msgField.content : null;
+    
     // Processa per messaggi di reversal se richiesto
     if (isReversal) {
-        printInfo("Generazione messaggio 1420");
-        fields = processReversalMessage(fields, isReversal);
+        printInfo("Generazione messaggio 1420 (reversal)");
+        fields = process1420TemplateMessage(fields);
+    } else if (messageType === "1420") {
+        printInfo("Rilevato messaggio 1420 - usando template con F24=400 e F117 riformattato");
+        fields = process1420TemplateMessage(fields);
     }
     
     printExtractedFields(fields);
