@@ -12,11 +12,15 @@ Applicazione che permette di convertire un messaggio ISO8583 con questa struttur
 Scaricare Node.js dal seguente link: https://nodejs.org/en/download
 
 ### Setup
+Primo step
 ```bash
 npm link
 ```
-Eseguire questo comando nella directory del progetto ISO8583-CONVERTER per creare il comando globale `conviso`.
-
+Eseguire questo comando nella directory del progetto ISO8583-CONVERTER per creare il comando globale 
+Secondo step
+```bash
+npm link conviso
+```
 ## Utilizzo
 
 ### Comando base
