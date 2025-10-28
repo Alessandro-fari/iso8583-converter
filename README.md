@@ -16,7 +16,8 @@ Primo step
 ```bash
 npm link
 ```
-Eseguire questo comando nella directory del progetto ISO8583-CONVERTER per creare il comando globale 
+Eseguire questo comando nella directory del progetto ISO8583-CONVERTER per creare il comando globale
+
 Secondo step
 ```bash
 npm link conviso
